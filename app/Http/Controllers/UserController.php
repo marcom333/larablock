@@ -48,7 +48,6 @@ class UserController extends Controller{
         else{
             unset($input["password"]);
         }
-        $input["tenant_id"] = 1;
         $user->update($input);
         return redirect("user");
     }
