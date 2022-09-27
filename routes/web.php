@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TransactionController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,10 +33,22 @@ Route::middleware(["auth"])->group(function (){
     Route::get('user/create', [UserController::class, "create"]); // form
     Route::post('user/create', [UserController::class, "store"]); // guarda
     
-    Route::get('user/update/{user}', [UserController::class, "edit"])->middleware(["miTenant"]);
+    Route::get('YOLO/{user}', [UserController::class, "edit"])->name("create")->middleware(["miTenant"]);
     Route::post('user/update/{user}', [UserController::class, "update"]);
     
     Route::post('user/delete/{user}', [UserController::class, "destroy"]);
     Route::get('user/{user}', [UserController::class, "show"])->middleware(["miTenant"]);
 
+    Route::get("transaction", [TransactionController::class, "index"]);
+    Route::get("transaction/js", [TransactionController::class, "show"]);
+
+    Route::post("transaction/create", [TransactionController::class, "store"]);
+});
+
+
+Route::get("test1", function (){
+    
+});
+Route::get("test2", function (Request $request){
+    
 });

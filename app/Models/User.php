@@ -43,8 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    // se manda a llamar con:
+    // auth()->user()->tenant->propiedad_de_tenant;
     function tenant(){
         return $this->hasOne(Tenant::class, "id", "tenant_id");
+    }
+
+
+    function transactions(){
+        return $this->hasMany(Transaction::class, "user_id", "id");
     }
 }
